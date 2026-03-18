@@ -21,13 +21,16 @@ Este projeto foi pensado para ser simples, didatico e reutilizavel como base par
 
 ```text
 projeto_etl_consolidacao_vendas/
+|-- .gitignore
+|-- README.md
 |-- data/
 |   |-- coleta_dia01.json
 |   |-- coleta_dia02.json
 |   |-- coleta_dia03.json
 |-- etl/
 |   |-- etl.py
-|-- README.md
+|-- pipeline/
+|   |-- pipeline.py
 ```
 
 ## Tecnologias usadas
