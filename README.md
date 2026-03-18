@@ -21,8 +21,13 @@ Este projeto foi pensado para ser simples, didatico e reutilizavel como base par
 
 ```text
 projeto_etl_consolidacao_vendas/
+|-- .venv/                  # ambiente virtual local (ignorado no Git)
+|-- .qodo/                  # arquivos locais de ferramenta (ignorado no Git)
+|-- .pytest_cache/          # cache local de testes
 |-- .gitignore
 |-- README.md
+|-- requirements.txt
+|-- pyproject.toml          # arquivo local (ignorado no Git)
 |-- data/
 |   |-- coleta_dia01.json
 |   |-- coleta_dia02.json
@@ -31,6 +36,8 @@ projeto_etl_consolidacao_vendas/
 |   |-- etl.py
 |-- pipeline/
 |   |-- pipeline.py
+|-- dados_vendas.csv        # gerado ao executar a pipeline (ignorado no Git)
+|-- dados_vendas.parquet    # gerado ao executar a pipeline (ignorado no Git)
 ```
 
 ## Tecnologias usadas
@@ -46,7 +53,7 @@ projeto_etl_consolidacao_vendas/
 2. Instale as dependencias:
 
 ```bash
-pip install pandas pyarrow
+pip install -r requirements.txt
 ```
 
 3. Execute a pipeline:
