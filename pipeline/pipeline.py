@@ -1,0 +1,14 @@
+from pathlib import Path
+import sys
+
+ROOT_DIR = Path(__file__).resolve().parents[1]
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
+from etl.etl import pipeline_calcular_kpi_vendas
+
+PATH_DADOS: str = "data"
+FORMATO_SAIDA: list[str] = ["csv", "parquet"]
+
+if __name__ == "__main__":
+    pipeline_calcular_kpi_vendas(PATH_DADOS, FORMATO_SAIDA)
