@@ -12,6 +12,16 @@ O projeto entrega um fluxo ETL simples e rastreavel:
 4. exporta em CSV e/ou Parquet
 5. registra logs em `log/logs_etl.log`
 
+## Ferramentas e tecnologias utilizadas
+
+![status](https://img.shields.io/badge/status-em%20evolucao-yellow) ![linguagem](https://img.shields.io/badge/linguagem-Python%203.10%2B-blue) ![arquitetura](https://img.shields.io/badge/arquitetura-ETL-orange) ![pandas](https://img.shields.io/badge/processamento-Pandas-150458?logo=pandas&logoColor=white) ![pyarrow](https://img.shields.io/badge/engine-Parquet%20(pyarrow)-4B8BBE) ![loguru](https://img.shields.io/badge/logging-Loguru-00A98F)
+
+- `Python`: linguagem principal da pipeline.
+- `Pandas`: consolidacao dos dados e calculo do KPI.
+- `PyArrow`: suporte para exportacao em Parquet.
+- `Loguru`: observabilidade da execucao e tratamento de excecoes.
+- `JSON`, `CSV` e `Parquet`: formatos de entrada e saida de dados.
+
 ## Documentacao modular
 
 A documentacao foi separada para facilitar leitura e manutencao:
