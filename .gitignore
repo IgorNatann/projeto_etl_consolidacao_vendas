@@ -3,6 +3,7 @@
 __pycache__
 poetry.lock
 pyproject.toml
+.python-version
 
 dados_vendas.csv
 dados_vendas.parquet
