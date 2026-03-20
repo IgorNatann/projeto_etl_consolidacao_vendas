@@ -1,109 +1,55 @@
 # Projeto ETL - Consolidacao de Vendas
 
-Mini-case de ETL em Python para consolidar arquivos JSON de vendas e gerar saidas em CSV e Parquet.
+Mini-case de ETL em Python para consolidar arquivos JSON de vendas, calcular KPI e gerar saidas em CSV/Parquet com observabilidade de execucao.
 
-Este projeto foi pensado para ser simples, didatico e reutilizavel como base para estudos e portfolio.
+## Visao geral
 
-## Para quem este projeto e
+O projeto entrega um fluxo ETL simples e rastreavel:
 
-- Quem esta comecando em Python.
-- Quem quer entender ETL na pratica.
-- Quem quer um projeto pequeno para portfolio tecnico.
+1. extrai arquivos JSON de `data/`
+2. consolida em DataFrame
+3. calcula `Total_vendido = Quantidade * Venda`
+4. exporta em CSV e/ou Parquet
+5. registra logs em `log/logs_etl.log`
 
-## O que este projeto faz
+## Documentacao modular
 
-1. Le varios arquivos JSON de vendas.
-2. Consolida tudo em um unico DataFrame.
-3. Calcula o KPI `Total_vendido` (`Quantidade * Venda`).
-4. Salva os dados finais em `dados_vendas.csv` e/ou `dados_vendas.parquet`.
+A documentacao foi separada para facilitar leitura e manutencao:
 
-## Estrutura do projeto
+- [Mapa da documentacao](docs/README.md)
+- [Arquitetura ETL](docs/arquitetura_etl.md)
+- [Observabilidade e logs](docs/observabilidade.md)
+- [Execucao e saidas](docs/execucao.md)
+- [Catalogo de arquivos](docs/catalogo_arquivos.md)
 
-```text
-projeto_etl_consolidacao_vendas/
-|-- .venv/                  # ambiente virtual local (ignorado no Git)
-|-- .qodo/                  # arquivos locais de ferramenta (ignorado no Git)
-|-- .pytest_cache/          # cache local de testes
-|-- .gitignore
-|-- README.md
-|-- requirements.txt
-|-- pyproject.toml          # arquivo local (ignorado no Git)
-|-- data/
-|   |-- coleta_dia01.json
-|   |-- coleta_dia02.json
-|   |-- coleta_dia03.json
-|-- etl/
-|   |-- etl.py
-|-- pipeline/
-|   |-- pipeline.py
-|-- dados_vendas.csv        # gerado ao executar a pipeline (ignorado no Git)
-|-- dados_vendas.parquet    # gerado ao executar a pipeline (ignorado no Git)
-```
-
-## Tecnologias usadas
-
-- Python
-- Pandas
-- JSON (entrada)
-- CSV e Parquet (saida)
-
-## Como rodar (passo a passo)
-
-1. Crie e ative um ambiente virtual (opcional, recomendado).
-2. Instale as dependencias:
+## Quickstart
 
 ```bash
 pip install -r requirements.txt
+python pipeline/pipeline.py
 ```
 
-3. Execute a pipeline:
+## Evidencias de execucao
+
+### Comando executado
 
 ```bash
-python -c "from etl.etl import pipeline_calcular_kpi_vendas; pipeline_calcular_kpi_vendas('data', ['csv', 'parquet'])"
+python pipeline/pipeline.py
 ```
 
-4. Confira os arquivos gerados na raiz do projeto:
+### Trecho do log
+
+Arquivo: `log/logs_etl.log`
+
+```text
+2026-03-20T17:07:03.797628-0300 INFO Funcao 'calcular_kpi_total_vendas' retornou DataFrame com 9 linhas, 6 colunas e colunas=['Produto', 'Categoria', 'Quantidade', 'Venda', 'Data', 'Total_vendido'] utils_log.py
+2026-03-20T17:07:03.815805-0300 INFO Funcao 'carregar_dados' concluida com sucesso. Arquivos de saida exportados (sem retorno explicito). utils_log.py
+2026-03-20T17:07:03.815805-0300 INFO Funcao 'pipeline_calcular_kpi_vendas' concluida com sucesso. Pipeline ETL finalizado (sem retorno explicito). utils_log.py
+2026-03-20T17:07:03.816326-0300 INFO Tempo de execucao da funcao 'pipeline_calcular_kpi_vendas': 0.035s utils_log.py
+```
+
+## Saidas esperadas
+
 - `dados_vendas.csv`
 - `dados_vendas.parquet`
-
-## Logica do ETL (step-by-step)
-
-### 1) Extracao - `extrair_dados_json(path)`
-
-1. Busca todos os arquivos `*.json` na pasta informada.
-2. Le cada arquivo com `pd.read_json`.
-3. Junta os DataFrames com `pd.concat`.
-4. Retorna um DataFrame consolidado.
-
-### 2) Transformacao - `calcular_kpi_total_vendas(df_consolidado)`
-
-1. Usa as colunas `Quantidade` e `Venda`.
-2. Calcula `Total_vendido = Quantidade * Venda`.
-3. Retorna o DataFrame com a nova coluna.
-
-### 3) Carga - `carregar_dados(df_entrada, formato_saida)`
-
-1. Recebe os formatos desejados (ex.: `['csv', 'parquet']`).
-2. Salva CSV quando o formato for `csv`.
-3. Salva Parquet quando o formato for `parquet`.
-
-### 4) Orquestracao - `pipeline_calcular_kpi_vendas(path, formato_saida)`
-
-1. Chama a extracao.
-2. Chama a transformacao.
-3. Chama a carga.
-
-## Exemplo rapido em Python
-
-```python
-from etl.etl import pipeline_calcular_kpi_vendas
-
-pipeline_calcular_kpi_vendas("data", ["csv", "parquet"])
-```
-
-## Proximos passos (ideias de melhoria)
-
-- Adicionar validacao de colunas obrigatorias.
-- Tratar cenario de pasta sem arquivos JSON.
-- Adicionar testes automatizados.
-- Adicionar logs para monitorar a execucao.
+- `log/logs_etl.log`

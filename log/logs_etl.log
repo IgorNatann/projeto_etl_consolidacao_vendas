@@ -1,0 +1,27 @@
+2026-03-20T17:07:03.776651-0300 INFO Chamando funcao 'pipeline_calcular_kpi_vendas' com args ('data', ['csv', 'parquet']) e kwargs {} utils_log.py
+2026-03-20T17:07:03.776651-0300 INFO Chamando funcao 'extrair_dados_json' com args ('data',) e kwargs {} utils_log.py
+2026-03-20T17:07:03.786821-0300 INFO Funcao 'extrair_dados_json' retornou DataFrame com 9 linhas, 5 colunas e colunas=['Produto', 'Categoria', 'Quantidade', 'Venda', 'Data'] utils_log.py
+2026-03-20T17:07:03.796629-0300 INFO Chamando funcao 'calcular_kpi_total_vendas' com args (            Produto    Categoria  Quantidade  Venda        Data
+0    Notebook Gamer  Eletrônicos           3   1500  2023-01-15
+1     Mouse Sem Fio  Eletrônicos          10     30  2023-01-15
+2  Teclado Mecânico  Eletrônicos           5    100  2023-01-15
+3    Notebook Gamer  Eletrônicos           7   1500  2023-01-16
+4     Mouse Sem Fio  Eletrônicos          10     30  2023-01-16
+5  Teclado Mecânico  Eletrônicos           3    100  2023-01-16
+6    Notebook Gamer  Eletrônicos           2   1500  2023-01-17
+7     Mouse Sem Fio  Eletrônicos          14     30  2023-01-17
+8  Teclado Mecânico  Eletrônicos           2    100  2023-01-17,) e kwargs {} utils_log.py
+2026-03-20T17:07:03.797628-0300 INFO Funcao 'calcular_kpi_total_vendas' retornou DataFrame com 9 linhas, 6 colunas e colunas=['Produto', 'Categoria', 'Quantidade', 'Venda', 'Data', 'Total_vendido'] utils_log.py
+2026-03-20T17:07:03.802718-0300 INFO Chamando funcao 'carregar_dados' com args (            Produto    Categoria  Quantidade  Venda        Data  Total_vendido
+0    Notebook Gamer  Eletrônicos           3   1500  2023-01-15           4500
+1     Mouse Sem Fio  Eletrônicos          10     30  2023-01-15            300
+2  Teclado Mecânico  Eletrônicos           5    100  2023-01-15            500
+3    Notebook Gamer  Eletrônicos           7   1500  2023-01-16          10500
+4     Mouse Sem Fio  Eletrônicos          10     30  2023-01-16            300
+5  Teclado Mecânico  Eletrônicos           3    100  2023-01-16            300
+6    Notebook Gamer  Eletrônicos           2   1500  2023-01-17           3000
+7     Mouse Sem Fio  Eletrônicos          14     30  2023-01-17            420
+8  Teclado Mecânico  Eletrônicos           2    100  2023-01-17            200, ['csv', 'parquet']) e kwargs {} utils_log.py
+2026-03-20T17:07:03.815805-0300 INFO Funcao 'carregar_dados' concluida com sucesso. Arquivos de saida exportados (sem retorno explicito). utils_log.py
+2026-03-20T17:07:03.815805-0300 INFO Funcao 'pipeline_calcular_kpi_vendas' concluida com sucesso. Pipeline ETL finalizado (sem retorno explicito). utils_log.py
+2026-03-20T17:07:03.816326-0300 INFO Tempo de execucao da funcao 'pipeline_calcular_kpi_vendas': 0.035s utils_log.py
